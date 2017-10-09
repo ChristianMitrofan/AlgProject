@@ -1,0 +1,164 @@
+Maria-Sofia Georgaki 	A.M 1115201200018 sdi1200018
+Kristian Mitrofan  	A.M 1115201200112 sdi1200112
+
+///////////////////////////////////////////////////////////////////////////////////
+//										 										 //
+//			        				PART 1					        			 //
+//									         									 //
+///////////////////////////////////////////////////////////////////////////////////
+
+Given two polynomials the program calculates and prints the Sylvester Matrix and any coefficient of the Sylvester polynomial.
+Furthermore given a vector it can multiply it with the Sylvester Matrix and print the result.
+More details are given below :
+
+Command line arguments		:		0 ->	then the user is asked to give the two max powers 
+(excluding the name of the program)			for the creation of random polynomials
+						1 ->	it is expected to be the name of the file(in the same folder))
+							polynomials are read from it
+						>2->	Error
+								
+Reading Polynomials from a file	:		Polynomials read can be in different forms.It is only expected that a general form is followed coeff*x^p1*y^p2.
+						Ones can be omitted(coeff or power).x or y can be mixed.The polynomials should have both x and y.
+
+Structures used in the program 	:		The program stores the polynomials in a 2D matrix (Columns are ranks of x,and rows are ranks of y)
+						The Sylvester matrix is stored in a 3D matrix with the height being used for storing the polynomials of y
+						The Sylvester polynomial is stored in an array of 2D matrices.
+Files included are :
+	
+	->main.cpp		//It only has the main function
+	
+	->GenericMatrix.cpp	//It has all the functions of the structs that are used in the program
+
+	->GenericMatrix.h	//It has all the declarations of the structs that are used in the program
+
+	->Calculations.cpp	//It has all the functions used in reading
+
+	->Calculations.h	//It has all the declarations of Calculations.cpp's functions
+
+	->Sylvester.cpp		//It has the function which creates the Sylvester Matrix given two polynomials(in matrix form)
+				//and the function that creates the Sylvester polynomial from the Sylvester matrix
+	->Sylvester.h		//It has the declarations of Sylvester.cpp's functions
+
+	->Multiply.cpp		//It has the function that multiplies the Sylvester matrix with the given vector	(bonus)
+
+	->Multiply.c		//It has the declaration of the above function
+
+	->pol.txt		//A test file with two polynomials
+
+	->README		//This one
+
+Assumptions :
+
+* The two polynomials given in the file should be written in the first two lines.One line for each polynomial.
+
+* The program can print multiple coefficients of the Sylvester polynomial(You can stop printing by typing 0 or a number greater than the number of the coefficients)
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//										 										 //
+//			        				PART 2					        			 //
+//									        									 //
+///////////////////////////////////////////////////////////////////////////////////
+
+Given two polynomials the program can create a Companion matrix or L1 and L0 and solve the standard 
+Eigen problem or the Generalised Eigen problem accordingly .Then it prints the roots of those polynomials.
+The program can be compiled with the command g++ -o equations -I/path/to/eigen/ *.cpp -lm /usr/lib/libblas.so /usr/lib/liblapack.so /usr/lib/liblapacke.so
+Example : g++ -o test -I/home/users/sdi1200112/Templates/Eigen *.cpp /usr/lib/libblas.so /usr/lib/liblapack.so /usr/lib/liblapacke.so
+
+
+Command line arguments		:		0 ->	then the user is asked to give the two max powers 
+(excluding the name of the program)			for the creation of random polynomials
+						1 ->	it is expected to be the name of the file(in the same folder))
+							polynomials are read from it
+						>2->	Error
+						
+						B is given through a DEFINE value
+
+Structures(Additional)  used in the program :	There are two new structures.
+						The Companion Matrix which holds a Companion Matrix to a Sylvester 
+						Polynomial if Md can be reversed.
+						The LMatrices which hold the aditional two matrices to a Sylvester
+						Polynoimila if Md cannot be reversed.
+			
+Files (New) included are :
+	
+	->Companion.cpp		//It has all the functions of a new struct (Comapanion) that is used in the program
+
+	->Companion.h		//It has all the declarations of a new struct (Comapanion) that is used in the program
+
+	->Lmatrices.cpp		//It has all the functions of a new struct (Lmatrices) that is used in the program
+
+	->Lmatrices.h		//It has all the declarations of a new struct (Lmatrices) that is used in the program
+
+	->Solution.cpp		//It has the functions which solve the eigen problem (Generalized or Standard)
+
+	->Solution.h		//It has the declarations of Solution.cpp's functions
+
+	->Polynomials.cpp	//This file now has all the functions used in reading
+
+	->Polynomials.h		//It has the declaration of the above functions
+
+Files (Changed) included are :
+
+	->main.cpp		//now includes the second part of the project		
+
+	->Multiply.cpp		//It has the function that multiplies the Sylvester matrix with the given vector as 
+				//as well as functions that are used to calculate the new polynomial(Z)
+	->Multiply.h		//It has the declaration of the above function
+
+	->Calculations.cpp	//Now includes functions that have to do with Matrix based Calculations like 
+				//checkin the roots.It also contains the bonus question(5)
+	->Calculations.h	//It has the declaration of the above functions
+
+	->README		//This one
+
+///////////////////////////////////////////////////////////////////////////////////
+//										 										 //
+//			        				PART 3					        			 //
+//									        									 //
+///////////////////////////////////////////////////////////////////////////////////
+
+The user has the choice to either insert polynomials through a file or by selecting points from a 2D grid.
+Given those polynomials the program does all the work of the previous two parts but it also includes the 
+possibility that multiplicity>1. The polynomials can be displayed if chosen by the user. After the program
+has run the real roots are displayed via the interface(the rest of the roots(complex) can be seen via the 
+qt creator terminal.
+
+Additional features	:   The user can choose each polynomial with either option and can remove either one 
+						via the remove button.
+						The whole program is compatible with double numbers (BONUS)
+
+
+Structures(Additional)  used in the program :	There is a new structure.
+						Vector companion creates the companion matrix
+						of a mononomial given the mononomial.
+
+
+Files (New) included are :
+
+	->VectorCompanion.cpp		//It has all the functions of a new struct (VectorCompanion) that are used to find the companion matrix of a mononomial
+	
+	->VectorCompanion.h 		//It has all the declarations of a new struct (VectorCompanion) that are used to find the companion matrix of a mononomial
+
+	->UnivariateSolving.cpp		//It has all the functions that are used to find the roots when multiplicity > 1
+	
+	->UnivariateSolving.h		//It has all the declarations of the UnivariateSolving.cpp functions
+	
+	->vizualization.cpp			//Its the new main
+	
+	->vizualization.h			//It has the declarations of vizualization.cpp
+
+	->points.cpp 				//It has all the functions that are used in the creation of polynomial with points
+	
+	->points.h 					//It has the declarations of points.cpp 
+	
+Files (Changed) included are :
+
+	->main.cpp 					//Its included in vizualization.cpp
+	
+	->solution.cpp				//It includes the case that multiplicity>1
+	
+	->calculations.cpp 			//It also writes in a file all the real roots that have multiplicity one
+	
+	->README					//This one

@@ -1,0 +1,9 @@
+set contour base
+set cntrparam level incremental 0.16, 0.259, 4.47
+unset key
+set view map
+set for [i=1:20] linetype i lc rgb 'black'
+
+set terminal pngcairo dashed size 600,400
+set output 'contour-with-points.png'
+splot 'surface1.txt' with lines nosurface, 'roots.txt' with points nocontour pt 7
